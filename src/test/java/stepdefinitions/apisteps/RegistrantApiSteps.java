@@ -1,5 +1,6 @@
 package stepdefinitions.apisteps;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,7 +13,11 @@ import io.restassured.specification.RequestSpecification;
 import pojos.Registrant;
 import utilities.ConfigurationReader;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static junit.framework.TestCase.assertEquals;
 import static utilities.WriteToTxt.saveRegistrantData;
 import static Hooks.Hooks.spec;
 public class RegistrantApiSteps  {
@@ -44,6 +49,8 @@ public class RegistrantApiSteps  {
         registrant.setLogin(username);
         registrant.setPassword(password);
         registrant.setLangKey(lan);
+//        Map<String ,Object> expectedData = new HashMap<>();
+//        expectedData.put("firstName", firstname);
 
     }
     @Given("user sends the POST request and gets the response")
@@ -58,9 +65,21 @@ public class RegistrantApiSteps  {
         saveRegistrantData(registrant);
     }
     @Then("user validates api records")
-    public void user_validates_api_records() {
+    public void user_validates_api_records() throws  Exception{
         response.then().statusCode(201);
         response.prettyPrint();
+
+        ObjectMapper obj = new ObjectMapper();
+
+        Registrant actualRegistrant = obj.readValue(response.asString(), Registrant.class);
+
+        System.out.println(actualRegistrant);
+
+        assertEquals(registrant.getFirstName(), actualRegistrant.getFirstName());
+        assertEquals(registrant.getLastName(), actualRegistrant.getLastName());
+        assertEquals(registrant.getSsn(), actualRegistrant.getSsn());
+
+
     }
 
 }
