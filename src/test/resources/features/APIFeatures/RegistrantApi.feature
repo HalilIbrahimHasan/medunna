@@ -14,4 +14,10 @@ Feature: Registrant api test
     |Recep    |Aykurt  |293-38-2938|recep@gmail.com|recepaykurt|Recep123.|en|
 
 
+  Scenario:  api get request
+
+    Given
+
+
+
 
