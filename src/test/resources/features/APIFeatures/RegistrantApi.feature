@@ -1,7 +1,7 @@
 Feature: Registrant api test
 
 
-
+@ApiRegistrant
   Scenario Outline: registrant test
     Given user sets the necessary path params
     And user sets the expected data "<firstname>", "<lastname>" "<SSN>" "<email>" "<username>" "<password>" and "<lan>"

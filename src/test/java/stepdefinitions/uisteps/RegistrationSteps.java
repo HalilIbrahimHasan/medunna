@@ -32,8 +32,8 @@ public class RegistrationSteps {
         firstname = faker.name().firstName();
         lastname = faker.name().lastName();
 
-        registrant.setFirstname(firstname);
-        registrant.setLastname(lastname);
+        registrant.setFirstName(firstname);
+        registrant.setLastName(lastname);
 
         Driver.waitAndSendText(rp.firstnameTextBox,firstname);
         Driver.waitAndSendText(rp.lastnameTextBox,lastname);
@@ -42,8 +42,8 @@ public class RegistrationSteps {
     }
     @Then("user creates username {string}")
     public void user_creates_username(String username) {
-        username = registrant.getFirstname() + registrant.getLastname();
-        registrant.setUsername(username);
+        username = registrant.getFirstName() + registrant.getLastName();
+        registrant.setLogin(username);
         Driver.waitAndSendText(rp.usernameTextBox,username);
 
     }

@@ -11,15 +11,9 @@ public class WriteToTxt {
 
 
     public static void saveRegistrantData(Registrant registrant){
-
-
-
-        try{
-
-
-
+         try{
             //src/resources/testdata/Registrantdata.txt
-            FileWriter fileWriter = new FileWriter(ConfigurationReader.getProperty("registrant_filename"), true);
+            FileWriter fileWriter = new FileWriter(ConfigurationReader.getProperty("api_registrant_data"), true);
 
             BufferedWriter writer = new BufferedWriter(fileWriter);
 

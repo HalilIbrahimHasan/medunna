@@ -1,77 +1,92 @@
 package pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Registrant {
 
+
+    /*
+    {
+  "activated": true,
+  "authorities": [
+    "string"
+  ],
+  "createdBy": "string",
+  "createdDate": "2022-03-06T16:16:26.333Z",
+  "email": "string",
+  "firstName": "string",
+  "id": 0,
+  "imageUrl": "string",
+  "langKey": "string",
+  "lastModifiedBy": "string",
+  "lastModifiedDate": "2022-03-06T16:16:26.333Z",
+  "lastName": "string",
+  "login": "string",
+  "password": "string",
+  "ssn": "string"
+}
+     */
+
+    private String firstName;
+    private String lastName;
     private String ssn;
-    private String firstname;
-    private String lastname;
-    private String username;
-    private String email;
+    private String login;
+    private String langKey;
     private String password;
-    private String lan;
-
-
-    //variables constructors /getters and setters / toString
-
+    private String email;
 
     public Registrant() {
     }
 
-    public Registrant(String ssn, String firstname, String lastname, String username, String email, String password) {
+    public Registrant(String firstName, String lastName, String ssn, String login, String langKey, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.ssn = ssn;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.email = email;
+        this.login = login;
+        this.langKey = langKey;
         this.password = password;
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getSsn() {
         return ssn;
     }
 
-    public String getLan() {
-        return lan;
-    }
-
-    public void setLan(String lan) {
-        this.lan = lan;
-    }
-
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getLogin() {
+        return login;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLangKey() {
+        return langKey;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
     }
 
     public String getPassword() {
@@ -82,16 +97,24 @@ public class Registrant {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Registrant{" +
-                "ssn='" + ssn + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", login='" + login + '\'' +
+                ", langKey='" + langKey + '\'' +
                 ", password='" + password + '\'' +
-                ", lan='" + lan + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

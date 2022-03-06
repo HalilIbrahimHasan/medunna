@@ -1,0 +1,4 @@
+Registrant{ssn='693-77-0332', firstname='Aleta', lastname='Kulas', username='clifton.bechtelar', email='reginald.boehm@hotmail.com', password='0a#I08^y%8', lan='en'}
+Registrant{ssn='517-82-3747', firstname='Almeta', lastname='White', username='elodia.daniel', email='sharita.dickinson@gmail.com', password='C0K#&EJ5n1*', lan='en'}
+Registrant{firstName='Lashanda', lastName='Bednar', ssn='159-99-3148', login='val.luettgen', langKey='en', password='e4iJ5HRB', email='deedee.connelly@hotmail.com'}
+Registrant{firstName='Teri', lastName='Strosin', ssn='827-58-5728', login='lanita.rodriguez', langKey='en', password='NFG!8WbMGs*7', email='tanya.doyle@hotmail.com'}
