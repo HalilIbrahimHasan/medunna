@@ -8,6 +8,7 @@ public class Registrant {
     private String username;
     private String email;
     private String password;
+    private String lan;
 
 
     //variables constructors /getters and setters / toString
@@ -27,6 +28,14 @@ public class Registrant {
 
     public String getSsn() {
         return ssn;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public void setLan(String lan) {
+        this.lan = lan;
     }
 
     public void setSsn(String ssn) {
@@ -82,6 +91,7 @@ public class Registrant {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", lan='" + lan + '\'' +
                 '}';
     }
 }
