@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertEquals;
+import static utilities.Authentication.generateToken;
 import static utilities.WriteToTxt.saveRegistrantData;
 import static Hooks.Hooks.spec;
 public class RegistrantApiSteps  {
@@ -81,5 +82,31 @@ public class RegistrantApiSteps  {
 
 
     }
+
+
+
+
+    @Given("user sends the get request for users data")
+    public void user_sends_the_get_request_for_users_data() {
+
+        response = given().headers(
+                "Authorization",
+                "Bearer " + ConfigurationReader.getProperty("token"),
+                "Content-Type",
+                ContentType.JSON,
+                "Accept",
+                ContentType.JSON).when().get(ConfigurationReader.getProperty("registrant_endpoint"));
+
+
+    }
+    @Given("user deserializes data to Java")
+    public void user_deserializes_data_to_java() {
+        response.prettyPrint();
+    }
+    @Given("user saves the users data to correspondent files")
+    public void user_saves_the_users_data_to_correspondent_files() {
+
+    }
+
 
 }
