@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertEquals;
+import static utilities.ApiUtils.getRequest;
 import static utilities.Authentication.generateToken;
 import static utilities.WriteToTxt.saveRegistrantData;
 import static Hooks.Hooks.spec;
@@ -26,6 +27,7 @@ public class RegistrantApiSteps  {
     Registrant registrant = new Registrant();
     Faker faker = new Faker();
     Response response;
+    Registrant []registrants;
 
     @Given("user sets the necessary path params")
     public void user_sets_the_necessary_path_params() {
@@ -89,19 +91,32 @@ public class RegistrantApiSteps  {
     @Given("user sends the get request for users data")
     public void user_sends_the_get_request_for_users_data() {
 
+
+        response = getRequest(generateToken(), ConfigurationReader.getProperty("registrant_endpoint"));
+
+    //This can be also used
+        /*
         response = given().headers(
                 "Authorization",
-                "Bearer " + ConfigurationReader.getProperty("token"),
+                "Bearer " + token,
                 "Content-Type",
                 ContentType.JSON,
                 "Accept",
-                ContentType.JSON).when().get(ConfigurationReader.getProperty("registrant_endpoint"));
+                ContentType.JSON).when().get(endpoint);
+         */
 
 
     }
     @Given("user deserializes data to Java")
-    public void user_deserializes_data_to_java() {
+    public void user_deserializes_data_to_java()throws Exception {
         response.prettyPrint();
+        ObjectMapper obj = new ObjectMapper();
+//
+        registrants = obj.readValue(response.asString(), Registrant[].class);
+//        System.out.println(registrants.length);
+//        for (int i=0; i< registrants.length; i++){
+//            System.out.println("name"+registrants[i].getFirstName());
+//        }
     }
     @Given("user saves the users data to correspondent files")
     public void user_saves_the_users_data_to_correspondent_files() {
