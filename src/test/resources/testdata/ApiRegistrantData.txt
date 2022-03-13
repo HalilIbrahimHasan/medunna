@@ -4,3 +4,5 @@ Registrant{firstName='Lashanda', lastName='Bednar', ssn='159-99-3148', login='va
 Registrant{firstName='Teri', lastName='Strosin', ssn='827-58-5728', login='lanita.rodriguez', langKey='en', password='NFG!8WbMGs*7', email='tanya.doyle@hotmail.com'}
 Registrant{firstName='Francesco', lastName='Conn', ssn='662-32-9756', login='efrain.rogahn', langKey='en', password='hy%KolJ&j', email='darrel.kautzer@gmail.com'}
 Registrant{firstName='Ike', lastName='Cormier', ssn='369-93-5260', login='wilber.morar', langKey='en', password='05Y1xspOH', email='lowell.johnston@hotmail.com'}
+Registrant{firstName='Blaine', lastName='Upton', ssn='448-89-3551', login='BlaineUpton', langKey='null', password='usxgQM5rynQ^7*Noa', email='demetra.davis@yahoo.com'}
+Registrant{firstName='Isidro', lastName='Cole', ssn='239-44-1825', login='IsidroCole', langKey='null', password='#$34eCmm8ZnBmWqN', email='avery.kuphal@yahoo.com'}
