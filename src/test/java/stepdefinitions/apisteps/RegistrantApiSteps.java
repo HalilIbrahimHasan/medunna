@@ -92,7 +92,7 @@ public class RegistrantApiSteps  {
     public void user_sends_the_get_request_for_users_data() {
 
 
-        response = getRequest(generateToken(), ConfigurationReader.getProperty("registrant_endpoint"));
+        response = getRequest(generateToken(), ConfigurationReader.getProperty("api_appointments"));
 
     //This can be also used
         /*
@@ -112,7 +112,7 @@ public class RegistrantApiSteps  {
         response.prettyPrint();
         ObjectMapper obj = new ObjectMapper();
 //
-        registrants = obj.readValue(response.asString(), Registrant[].class);
+//        registrants = obj.readValue(response.asString(), Registrant[].class);
 //        System.out.println(registrants.length);
 //        for (int i=0; i< registrants.length; i++){
 //            System.out.println("name"+registrants[i].getFirstName());

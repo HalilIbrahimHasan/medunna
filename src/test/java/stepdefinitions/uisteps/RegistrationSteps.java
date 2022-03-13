@@ -8,6 +8,9 @@ import pages.RegistrationPage;
 import pojos.Registrant;
 import utilities.Driver;
 
+import java.util.List;
+
+import static utilities.ReadTxt.getSSNIDs;
 import static utilities.WriteToTxt.saveRegistrantData;
 
 public class RegistrationSteps {
@@ -89,6 +92,21 @@ public class RegistrationSteps {
         }else if(3 == Integer.parseInt(level)){
             Assert.assertTrue(rp.passwordStrength3.isDisplayed());
         }
+
+
+    }
+
+
+    @Then("user gets DB records and validates the ssn")
+    public void user_gets_db_records_and_validates_the_ssn() {
+
+
+
+        List<String> actualSSNIDs = getSSNIDs();
+
+        Assert.assertTrue(actualSSNIDs.contains(registrant.getSsn()));
+
+
 
 
     }

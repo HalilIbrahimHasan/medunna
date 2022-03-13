@@ -10,6 +10,8 @@ import org.openqa.selenium.TakesScreenshot;
 import utilities.ConfigurationReader;
 import utilities.Driver;
 
+import static utilities.DatabaseUtility.createConnection;
+
 public class Hooks {
     @Before
     public void setUp(){
@@ -35,6 +37,16 @@ public class Hooks {
         Driver.getDriver().get(ConfigurationReader.getProperty("medunna_registration_url"));
 
     }
+
+    @Before( value = "@EndToEnd")
+    public void createNewDBConnection(){
+
+        createConnection(ConfigurationReader.getProperty("db_credentials_url"),
+                ConfigurationReader.getProperty("db_username"),
+                ConfigurationReader.getProperty("db_password"));
+
+    }
+
 
     @Before(order = 1, value = "@Appointment")
     public void navigateToLandingPage(){
