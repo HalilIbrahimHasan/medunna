@@ -20,6 +20,16 @@ Feature: Registrant api test
     And user deserializes data to Java
     And user saves the users data to correspondent files
 
+    @PutUserRequest
+    Scenario: update existing users
+      Given user sets the expected user data
+      And user makes a put request for users
+      And user validates the changes
+
+
+
+
+
 
 
 

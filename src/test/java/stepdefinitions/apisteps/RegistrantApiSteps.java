@@ -10,16 +10,21 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assert;
 import pojos.Registrant;
 import utilities.ConfigurationReader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertEquals;
 import static utilities.ApiUtils.getRequest;
+import static utilities.ApiUtils.putRequest;
 import static utilities.Authentication.generateToken;
+import static utilities.ReadTxt.*;
 import static utilities.WriteToTxt.saveRegistrantData;
 import static Hooks.Hooks.spec;
 public class RegistrantApiSteps  {
@@ -92,7 +97,7 @@ public class RegistrantApiSteps  {
     public void user_sends_the_get_request_for_users_data() {
 
 
-        response = getRequest(generateToken(), ConfigurationReader.getProperty("api_appointments"));
+        response = getRequest(generateToken(), ConfigurationReader.getProperty("registrant_endpoint"));
 
     //This can be also used
         /*
@@ -109,10 +114,15 @@ public class RegistrantApiSteps  {
     }
     @Given("user deserializes data to Java")
     public void user_deserializes_data_to_java()throws Exception {
-        response.prettyPrint();
+//        response.prettyPrint();
         ObjectMapper obj = new ObjectMapper();
 //
-//        registrants = obj.readValue(response.asString(), Registrant[].class);
+        registrants = obj.readValue(response.asString(), Registrant[].class);
+
+
+
+
+
 //        System.out.println(registrants.length);
 //        for (int i=0; i< registrants.length; i++){
 //            System.out.println("name"+registrants[i].getFirstName());
@@ -121,7 +131,53 @@ public class RegistrantApiSteps  {
     @Given("user saves the users data to correspondent files")
     public void user_saves_the_users_data_to_correspondent_files() {
 
+        List<String> expectedData = getSSNIDs();
+        saveRegistrantData(registrants);
+
+        List<String> actualSSNIDs = getAPISSNIDs();
+        List<String > checkList = new ArrayList<>();
+        for(int i=actualSSNIDs.size()-1; i>= actualSSNIDs.size()-500;i--){
+
+            checkList.add(actualSSNIDs.get(i));//10 records
+        }
+
+        System.out.println(actualSSNIDs);
+        Assert.assertTrue(expectedData.containsAll(checkList));
+        System.out.println(checkList);
+
     }
+
+
+
+    @Given("user sets the expected user data")
+    public void user_sets_the_expected_user_data() {
+        String [] authority = {"USER_ROLE"};
+        registrant.setFirstName("usernew2");
+        registrant.setLastName("Sensoy23");
+        registrant.setEmail("reySen23@gmail.com");
+        registrant.setLogin("reyhanhanim23");
+        registrant.setSsn("746-38-7563");
+        registrant.setLangKey("en");
+        registrant.setActivated(true);
+        registrant.setAuthorities(authority);
+
+
+
+        List<Registrant> registrants = getAllRegistrants();
+        registrant.setId(registrants.get(registrants.size()-3).getId());
+
+        System.out.println("User id: "+registrants.get(registrants.size()-3).getId());
+
+    }
+    @Given("user makes a put request for users")
+    public void user_makes_a_put_request_for_users() {
+        putRequest(generateToken(), ConfigurationReader.getProperty("registrant_put_endpoint"), registrant);
+    }
+    @Given("user validates the changes")
+    public void user_validates_the_changes() {
+
+    }
+
 
 
 }
