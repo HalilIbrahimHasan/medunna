@@ -22,7 +22,7 @@ public class Hooks {
     //
     public static RequestSpecification spec;
 
-    @Before( value = "@PutUserRequest")
+    @Before( value = "@DeleteUser")
     public void setup(){
 
         spec = new RequestSpecBuilder().setBaseUri(ConfigurationReader.getProperty("base_url")).build();
@@ -38,7 +38,7 @@ public class Hooks {
 
     }
 
-    @Before( value = "@EndToEnd")
+    @Before( value = "@DBUsers")
     public void createNewDBConnection(){
 
         createConnection(ConfigurationReader.getProperty("db_credentials_url"),

@@ -131,6 +131,9 @@ public class DatabaseUtility {
      *         collection of rows and a map represents represent a single row with
      *         key being the column name
      */
+
+
+
     public static List<Map<String, Object>> getQueryResultMap(String query) {
         executeQuery(query);
         List<Map<String, Object>> rowList = new ArrayList<>();

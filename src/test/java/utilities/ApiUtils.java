@@ -40,7 +40,20 @@ public class ApiUtils {
 
     }
 
+    public static Response deleteRequest(String token, String endpoint){
 
+        Response response = given().headers(
+                "Authorization",
+                "Bearer " + token,
+                "Content-Type",
+                ContentType.JSON,
+                "Accept",
+                ContentType.JSON).when().delete(endpoint);
+
+
+        return  response;
+
+    }
 
 
 }

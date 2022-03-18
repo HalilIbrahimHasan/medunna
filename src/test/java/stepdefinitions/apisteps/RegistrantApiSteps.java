@@ -21,8 +21,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertEquals;
-import static utilities.ApiUtils.getRequest;
-import static utilities.ApiUtils.putRequest;
+import static utilities.ApiUtils.*;
 import static utilities.Authentication.generateToken;
 import static utilities.ReadTxt.*;
 import static utilities.WriteToTxt.saveRegistrantData;
@@ -179,5 +178,27 @@ public class RegistrantApiSteps  {
     }
 
 
+    @Given("user sends the delete request")
+    public void user_sends_the_delete_request() {
+        List<Registrant> registrants = getAllRegistrants();
+        String targetUser = "";
+
+        for(int i=0; i<registrants.size();i++){
+
+//            System.out.println(registrants.get(i).getSsn());
+            if(registrants.get(i).getSsn().equalsIgnoreCase("104-24-1228")){
+                targetUser = registrants.get(i).getLogin();
+                break;
+            }
+        }
+        System.out.println(targetUser);
+        response = deleteRequest(generateToken(), ConfigurationReader.getProperty("registrant_delete_endpoint")+"/"+
+                targetUser);
+    }
+
+    @Then("user validates the deleted user")
+    public void user_validates_the_deleted_user() {
+        response.then().statusCode(204);
+    }
 
 }

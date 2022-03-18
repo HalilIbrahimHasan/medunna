@@ -26,6 +26,12 @@ Feature: Registrant api test
       And user makes a put request for users
       And user validates the changes
 
+    @DeleteUser
+      Scenario: delete users
+
+        Given user sends the delete request
+        Then user validates the deleted user
+
 
 
 
